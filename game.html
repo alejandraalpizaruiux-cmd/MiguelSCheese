@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play — Miguel's Cheese Run</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html"       class="nav-link">🏠 Home</a>
+    <a href="game.html"        class="nav-link active" aria-current="page">▶ Play</a>
+    <a href="how-to-play.html" class="nav-link">? Help</a>
+  </nav>
+
+  <!-- ── Game Container (canvas fills this) ── -->
+  <div id="game-container" role="application" aria-label="Miguel's Cheese Run game">
+
+    <!-- Canvas: all game world is drawn here by game.js -->
+    <canvas id="game-canvas" aria-hidden="true"></canvas>
+
+    <!-- HUD: level indicator and restart button -->
+    <div id="hud" aria-live="polite" aria-label="Game status">
+      <span id="hud-level" aria-label="Current level">Night 1 / 5</span>
+      <button class="hud-btn" onclick="restartLevel()"
+              aria-label="Restart current level">↺ Restart</button>
+    </div>
+
+    <!-- Level title flash (shown at start of each level) -->
+    <div id="level-title" aria-live="assertive" aria-atomic="true"></div>
+
+    <!-- D-pad: mobile touch controls -->
+    <div class="dpad" aria-label="Directional controls">
+      <button id="dpad-up"    class="dpad-btn" aria-label="Move up">▲</button>
+      <button id="dpad-left"  class="dpad-btn" aria-label="Move left">◀</button>
+      <div    id="dpad-mid"   class="dpad-btn" aria-hidden="true"></div>
+      <button id="dpad-right" class="dpad-btn" aria-label="Move right">▶</button>
+      <button id="dpad-down"  class="dpad-btn" aria-label="Move down">▼</button>
+    </div>
+
+    <!-- ── GAME OVER Overlay ── -->
+    <div id="dead-overlay"
+         class="game-overlay"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="dead-title"
+         aria-describedby="dead-sub">
+
+      <div class="overlay-box">
+        <div class="overlay-icon" aria-hidden="true">🪤</div>
+
+        <h2 class="overlay-title dead" id="dead-title">
+          GAME OVER
+        </h2>
+
+        <p class="overlay-sub" id="dead-sub">
+          Miguel got caught…
+        </p>
+
+        <p class="overlay-question">Continue?</p>
+
+        <div class="overlay-btns">
+          <button id="btn-continue"
+                  class="btn btn-green"
+                  onclick="continueGame()"
+                  aria-label="Try again from the start of this night">
+            ✓ YES
+          </button>
+          <button class="btn btn-red"
+                  onclick="quitGame()"
+                  aria-label="Give up and return to home screen">
+            ✗ NO
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── WIN Overlay ── -->
+    <div id="win-overlay"
+         class="game-overlay"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="win-title"
+         aria-describedby="win-sub">
+
+      <div class="overlay-box">
+        <div class="overlay-icon" aria-hidden="true">🧀</div>
+
+        <h2 class="overlay-title win" id="win-title">
+          Dinner<br>found!
+        </h2>
+
+        <p class="overlay-sub" id="win-sub" aria-live="polite">
+          Miguel made it home safely.<br>
+          Time to eat!
+        </p>
+
+        <p id="win-night"
+           style="font-size:9px;color:var(--text-dim)"
+           aria-live="polite">Night 1 complete!</p>
+
+        <div class="overlay-btns">
+          <button id="btn-next"
+                  class="btn btn-primary"
+                  onclick="nextNight()"
+                  aria-label="Start the next night">
+            Next Night →
+          </button>
+          <button class="btn btn-secondary"
+                  onclick="quitGame()"
+                  aria-label="Return to home screen">
+            🏠 Home
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- #game-container -->
+
+  <!-- Keyboard hint (screen-reader accessible, visually subtle) -->
+  <p style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
+            font-size:6px;color:rgba(120,120,168,0.5);
+            pointer-events:none;white-space:nowrap;z-index:10;"
+     aria-live="off">
+    Arrow keys / WASD to move
+  </p>
+
+  <script src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miguel's Cheese Run</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html"       class="nav-link active" aria-current="page">🏠 Home</a>
+    <a href="game.html"        class="nav-link">▶ Play</a>
+    <a href="how-to-play.html" class="nav-link">? Help</a>
+  </nav>
+
+  <!-- ── Home Page ── -->
+  <main class="home-page">
+
+    <section class="home-hero" aria-labelledby="game-heading">
+
+      <!-- Title -->
+      <h1 class="game-title" id="game-heading" aria-label="Miguel's Cheese Run">
+        <span class="title-top">Miguel's</span>
+        <span class="title-cheese">Cheese</span>
+        <span class="title-bottom">Run</span>
+      </h1>
+
+      <!-- Animated Miguel sprite -->
+      <div class="miguel-hero-wrap" aria-hidden="true">
+        <div class="miguel-sprite">
+          <div class="m-ear left"></div>
+          <div class="m-ear right"></div>
+          <div class="m-head">
+            <div class="m-eye left"></div>
+            <div class="m-eye right"></div>
+            <div class="m-nose"></div>
+          </div>
+          <div class="m-body"></div>
+          <div class="m-tail"></div>
+        </div>
+      </div>
+
+      <!-- Story tagline -->
+      <p class="tagline">
+        Miguel is a tiny mouse who lives inside the walls of a house.<br>
+        Every night he ventures into the <strong style="color:var(--accent)">enormous kitchen</strong><br>
+        searching for food — before the humans wake up.<br>
+        <br>
+        He is brave. He is scared. He is hungry.
+      </p>
+
+      <!-- Buttons -->
+      <div class="home-btns">
+        <a href="game.html"        class="btn btn-primary"   role="button">▶ START GAME</a>
+        <a href="how-to-play.html" class="btn btn-secondary" role="button">? HOW TO PLAY</a>
+      </div>
+
+    </section>
+
+    <!-- Feature cards -->
+    <section class="home-features" aria-label="Game highlights">
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">🐭</span>
+        <p>Control Miguel<br>tile by tile</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">🪤</span>
+        <p>Avoid hidden<br>mousetraps</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">🔢</span>
+        <p>Read the clues<br>like Minesweeper</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon" aria-hidden="true">🧀</span>
+        <p>Reach the cheese<br>each night</p>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

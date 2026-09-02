@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Play — Miguel's Cheese Run</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html"       class="nav-link">🏠 Home</a>
+    <a href="game.html"        class="nav-link">▶ Play</a>
+    <a href="how-to-play.html" class="nav-link active" aria-current="page">? Help</a>
+  </nav>
+
+  <!-- ── How to Play ── -->
+  <main class="how-page">
+
+    <h1>How to Play</h1>
+
+    <!-- Story -->
+    <section class="section-panel" aria-label="The story">
+      <h2>📖 The Story</h2>
+      <div class="char-row">
+
+        <!-- Mini CSS Miguel sprite -->
+        <div class="char-sprite-small" aria-hidden="true">
+          <div class="miguel-sprite" style="transform:scale(0.68);transform-origin:top left;width:84px;height:104px;">
+            <div class="m-ear left"></div>
+            <div class="m-ear right"></div>
+            <div class="m-head">
+              <div class="m-eye left"></div>
+              <div class="m-eye right"></div>
+              <div class="m-nose"></div>
+            </div>
+            <div class="m-body"></div>
+            <div class="m-tail"></div>
+          </div>
+        </div>
+
+        <div class="char-info">
+          <strong>Miguel</strong> is a tiny, courageous gray mouse.<br>
+          <br>
+          He lives inside the walls of a family home.<br>
+          Every night he sneaks into the <strong>kitchen</strong> —<br>
+          which feels <em>absolutely enormous</em> to him.<br>
+          <br>
+          He is smart. He is cautious. He is a little scared.<br>
+          But he is also very, very hungry.
+        </div>
+      </div>
+    </section>
+
+    <!-- Goal -->
+    <section class="section-panel" aria-label="Game goal">
+      <h2>🎯 Goal</h2>
+      <div class="rule-list">
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🐭</span>
+          <span>
+            Miguel starts in the <strong>top-left corner</strong> of the kitchen floor.
+            Guide him safely to the cheese.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🧀</span>
+          <span>
+            The cheese is always visible in the <strong>bottom-right corner</strong>.
+            Reach it to complete the night.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🪤</span>
+          <span>
+            The family has hidden <strong>mousetraps</strong> on the floor.
+            Step on one and it's game over. They are invisible until triggered.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🌙</span>
+          <span>
+            Each night (level) adds <strong>more traps</strong> and a bigger kitchen.
+            There are 5 nights in total.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls -->
+    <section class="section-panel" aria-label="Controls">
+      <h2>🕹 Controls</h2>
+      <div class="key-grid">
+        <div class="key-row">
+          <span class="key-badge">↑ W</span>
+          Move Miguel up one tile
+        </div>
+        <div class="key-row">
+          <span class="key-badge">↓ S</span>
+          Move Miguel down one tile
+        </div>
+        <div class="key-row">
+          <span class="key-badge">← A</span>
+          Move Miguel left one tile
+        </div>
+        <div class="key-row">
+          <span class="key-badge">→ D</span>
+          Move Miguel right one tile
+        </div>
+        <div class="key-row">
+          <span class="key-badge">D-Pad</span>
+          Same — tap the on-screen buttons (mobile)
+        </div>
+      </div>
+
+      <p style="font-size:7px;color:var(--text-dim);margin-top:16px;line-height:2.2;">
+        Miguel moves one tile at a time with a smooth walking animation.
+        Hold a key to keep moving, or tap once to take a single careful step.
+      </p>
+    </section>
+
+    <!-- The numbers -->
+    <section class="section-panel" aria-label="Trap clues explained">
+      <h2>🔢 Reading the Clues</h2>
+      <p style="font-size:8px;color:var(--text-dim);line-height:2.3;margin-bottom:14px;">
+        After every step, the tile Miguel just left shows a number.<br>
+        That number counts how many of the <strong style="color:var(--text)">8 surrounding tiles</strong>
+        contain a hidden trap. Use these clues to plan a safe path.
+      </p>
+      <div class="num-legend" aria-label="Colour guide for trap count numbers">
+        <div class="legend-item">
+          <span class="legend-num" style="color:#4fc3f7">1</span>
+          1 trap nearby
+        </div>
+        <div class="legend-item">
+          <span class="legend-num" style="color:#66cc77">2</span>
+          2 traps nearby
+        </div>
+        <div class="legend-item">
+          <span class="legend-num" style="color:#f06060">3</span>
+          3 traps nearby
+        </div>
+        <div class="legend-item">
+          <span class="legend-num" style="color:#a080e0">4</span>
+          4 traps nearby
+        </div>
+        <div class="legend-item">
+          <span class="legend-num" style="color:#ff8844">5</span>
+          5 traps nearby
+        </div>
+        <div class="legend-item">
+          <span class="legend-num" style="color:#44ccdd">6</span>
+          6 traps nearby
+        </div>
+        <div class="legend-item">
+          <span class="legend-num" style="color:#ff77aa">7</span>
+          7 traps nearby
+        </div>
+        <div class="legend-item">
+          <span class="legend-num" style="color:#b0b0c8">8</span>
+          8 traps nearby
+        </div>
+      </div>
+      <p style="font-size:7px;color:var(--text-dim);margin-top:14px;line-height:2.2;">
+        A blank tile with no number means <strong style="color:var(--text)">zero nearby traps</strong>.
+        Safe territory — feel free to explore.
+      </p>
+    </section>
+
+    <!-- The environment -->
+    <section class="section-panel" aria-label="Kitchen environment">
+      <h2>🍳 The Kitchen</h2>
+      <div class="rule-list">
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🪑</span>
+          <span>
+            <strong>Table legs and chair legs</strong> block some tiles.
+            They are impassable — Miguel must navigate around them.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🍞</span>
+          <span>
+            <strong>Crumbs, spoons, bottle caps</strong> and other objects
+            are scattered on the floor. They are purely decorative — safe to walk over.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🌑</span>
+          <span>
+            The kitchen is <strong>dark at night</strong>. Only the area near
+            Miguel is lit. The cheese always glows faintly in the distance.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">✅</span>
+          <span>
+            <strong>Every level is solvable.</strong>
+            There is always at least one safe route from Miguel to the cheese —
+            even if it's hard to find.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Miguel's behaviour -->
+    <section class="section-panel" aria-label="Miguel's behaviour">
+      <h2>🐭 Miguel's Personality</h2>
+      <div class="rule-list">
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">😴</span>
+          <span>
+            <strong>Idle</strong> — Miguel breathes softly, blinks, wiggles his nose,
+            and occasionally looks around.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">😰</span>
+          <span>
+            <strong>Nervous</strong> — Stand still for too long and Miguel grows visibly
+            anxious: his ears twitch faster, his eyes dart around, and a sweat drop
+            appears. He really wants to get home.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🏃</span>
+          <span>
+            <strong>Walking</strong> — Miguel animates smoothly between tiles.
+            His legs swing and his body bobs as he moves.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🎉</span>
+          <span>
+            <strong>Victory</strong> — Miguel bounces happily with sparkles
+            when he reaches the cheese.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="section-panel" aria-label="Strategy tips">
+      <h2>💡 Tips</h2>
+      <div class="rule-list">
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">0️⃣</span>
+          <span>
+            A <strong>blank tile</strong> (no number) is surrounded by safe tiles.
+            You can explore all 8 of its neighbours freely.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🗺</span>
+          <span>
+            Build a mental map from revealed numbers before charging forward.
+            One bad step ends the night.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">↩</span>
+          <span>
+            Sometimes it's safer to <strong>go around</strong> a high-number area
+            even if it takes more steps.
+          </span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon" aria-hidden="true">🧀</span>
+          <span>
+            The cheese is always in the <strong>bottom-right</strong>.
+            Approach it from multiple angles — the surrounding tiles might have traps.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div style="text-align:center;padding-top:8px;">
+      <a href="game.html" class="btn btn-primary" role="button">▶ START PLAYING</a>
+    </div>
+
+  </main>
+
+</body>
+</html>

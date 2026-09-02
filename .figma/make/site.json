@@ -1,0 +1,10 @@
+{
+  "description": "Guide Miguel the mouse through a cozy kitchen maze to find cheese while avoiding hidden traps in this engaging retro-style browser game.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
