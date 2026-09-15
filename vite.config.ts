@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => {
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
+      stripViteClient(),
     ],
     resolve: {
       alias: {
@@ -34,10 +35,7 @@ export default defineConfig(({ mode }) => {
       port: parseInt(process.env.PORT || '8443'),
       strictPort: true,
       watch: { ignored: ['**/.figma/**'] },
-      hmr: {
-        clientPort: 443,
-        protocol: 'wss',
-      },
+      hmr: false,
     },
     preview: {
       host: '0.0.0.0',
@@ -295,6 +293,28 @@ function figmaReactRefreshBoundaryFallback(): Plugin {
       }
 
       return null
+    },
+  }
+}
+
+/**
+ * Remove the injected /@vite/client script tag from every HTML response.
+ * Figma Make's HTTPS proxy cannot tunnel WebSockets, so the HMR client
+ * always fails. hmr:false suppresses the connection attempt but Vite can
+ * still embed the tag; this plugin guarantees it is never delivered.
+ */
+function stripViteClient(): Plugin {
+  return {
+    name: 'strip-vite-client',
+    apply: 'serve',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html: string) {
+        return html.replace(
+          /<script type="module" src="\/@vite\/client"><\/script>\n?/g,
+          '',
+        )
+      },
     },
   }
 }

@@ -15,27 +15,49 @@
     <a href="how-to-play.html" class="nav-link">? Help</a>
   </nav>
 
-  <!-- ── Game Container (canvas fills this) ── -->
+  <!-- ── Game Container ── -->
   <div id="game-container" role="application" aria-label="Miguel's Cheese Run game">
 
-    <!-- Canvas: all game world is drawn here by game.js -->
+    <!-- Canvas -->
     <canvas id="game-canvas" aria-hidden="true"></canvas>
 
-    <!-- HUD: level indicator and restart button -->
+    <!-- ── HUD ── -->
     <div id="hud" aria-live="polite" aria-label="Game status">
-      <span id="hud-level" aria-label="Current level">Night 1 / 5</span>
+      <span id="hud-level"  aria-label="Current night">🌙 Night 1</span>
+      <span id="hud-lives"  aria-label="Lives remaining">❤️❤️❤️</span>
+      <span id="hud-cheese" aria-label="Cheese collected">🧀 ×0</span>
+
+      <!-- Flag mode indicator (hidden when inactive) -->
+      <span id="hud-flag"
+            role="status"
+            aria-label="Flag mode active — click tiles to place or remove flags"
+            style="display:none">
+        🚩 FLAG MODE
+      </span>
+
+      <button id="btn-music"
+              class="hud-btn hud-music-btn"
+              onclick="toggleMusic()"
+              aria-label="Toggle music"
+              aria-pressed="true"
+              title="Music ON — click to mute">🎵</button>
+
       <button class="hud-btn" onclick="restartLevel()"
-              aria-label="Restart current level">↺ Restart</button>
+              aria-label="Restart current night">↺ Restart</button>
     </div>
 
-    <!-- Level title flash (shown at start of each level) -->
+    <!-- Level title flash -->
     <div id="level-title" aria-live="assertive" aria-atomic="true"></div>
 
-    <!-- D-pad: mobile touch controls -->
+    <!-- Life-lost flash -->
+    <div id="life-lost-msg" aria-live="assertive" aria-atomic="true">💔 −1 Life</div>
+
+    <!-- ── D-Pad ── -->
     <div class="dpad" aria-label="Directional controls">
       <button id="dpad-up"    class="dpad-btn" aria-label="Move up">▲</button>
       <button id="dpad-left"  class="dpad-btn" aria-label="Move left">◀</button>
-      <div    id="dpad-mid"   class="dpad-btn" aria-hidden="true"></div>
+      <!-- Flag toggle (mobile) -->
+      <button id="dpad-flag"  class="dpad-btn dpad-flag-btn" aria-label="Toggle flag mode" title="Toggle flag mode (F key)">🚩</button>
       <button id="dpad-right" class="dpad-btn" aria-label="Move right">▶</button>
       <button id="dpad-down"  class="dpad-btn" aria-label="Move down">▼</button>
     </div>
@@ -47,35 +69,21 @@
          aria-modal="true"
          aria-labelledby="dead-title"
          aria-describedby="dead-sub">
-
       <div class="overlay-box">
         <div class="overlay-icon" aria-hidden="true">🪤</div>
-
-        <h2 class="overlay-title dead" id="dead-title">
-          GAME OVER
-        </h2>
-
-        <p class="overlay-sub" id="dead-sub">
-          Miguel got caught…
-        </p>
-
-        <p class="overlay-question">Continue?</p>
-
+        <h2 class="overlay-title dead" id="dead-title">GAME OVER</h2>
+        <p class="overlay-sub" id="dead-sub">Miguel ran out of lives…</p>
+        <p class="overlay-question">Try again?</p>
         <div class="overlay-btns">
           <button id="btn-continue"
                   class="btn btn-green"
                   onclick="continueGame()"
-                  aria-label="Try again from the start of this night">
-            ✓ YES
-          </button>
+                  aria-label="Try again from the start of this night">✓ YES</button>
           <button class="btn btn-red"
                   onclick="quitGame()"
-                  aria-label="Give up and return to home screen">
-            ✗ NO
-          </button>
+                  aria-label="Return to home screen">✗ NO</button>
         </div>
       </div>
-
     </div>
 
     <!-- ── WIN Overlay ── -->
@@ -85,48 +93,53 @@
          aria-modal="true"
          aria-labelledby="win-title"
          aria-describedby="win-sub">
-
       <div class="overlay-box">
         <div class="overlay-icon" aria-hidden="true">🧀</div>
-
-        <h2 class="overlay-title win" id="win-title">
-          Dinner<br>found!
-        </h2>
-
-        <p class="overlay-sub" id="win-sub" aria-live="polite">
-          Miguel made it home safely.<br>
-          Time to eat!
-        </p>
-
-        <p id="win-night"
-           style="font-size:9px;color:var(--text-dim)"
-           aria-live="polite">Night 1 complete!</p>
-
+        <h2 class="overlay-title win" id="win-title">Dinner<br>found!</h2>
+        <p class="overlay-sub" id="win-sub">Miguel made it home safely.<br>Time to eat!</p>
+        <p id="win-night" style="font-size:9px;color:var(--text-dim)" aria-live="polite">🌙 Night 1 complete!</p>
         <div class="overlay-btns">
           <button id="btn-next"
                   class="btn btn-primary"
                   onclick="nextNight()"
-                  aria-label="Start the next night">
-            Next Night →
-          </button>
+                  aria-label="Start the next night">Next Night →</button>
           <button class="btn btn-secondary"
                   onclick="quitGame()"
-                  aria-label="Return to home screen">
-            🏠 Home
-          </button>
+                  aria-label="Return to home screen">🏠 Home</button>
         </div>
       </div>
+    </div>
 
+    <!-- ── ROOM TRANSITION Overlay ── -->
+    <div id="room-transition-overlay"
+         class="game-overlay"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="rt-room"
+         aria-describedby="rt-flavor">
+      <div class="overlay-box room-transition-box">
+        <div class="overlay-icon" id="rt-icon" aria-hidden="true">🥫</div>
+        <p class="rt-eyebrow">Miguel sneaks into…</p>
+        <h2 class="overlay-title win" id="rt-room">Pantry</h2>
+        <p class="rt-night" id="rt-night">🌙 Night 6</p>
+        <p class="overlay-sub" id="rt-flavor">Miguel quietly sneaks into the pantry…</p>
+        <button id="btn-room-continue"
+                class="btn btn-primary"
+                onclick="confirmRoomTransition()"
+                aria-label="Enter the new room">
+          Enter →
+        </button>
+      </div>
     </div>
 
   </div><!-- #game-container -->
 
-  <!-- Keyboard hint (screen-reader accessible, visually subtle) -->
+  <!-- Keyboard hint -->
   <p style="position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
             font-size:6px;color:rgba(120,120,168,0.5);
-            pointer-events:none;white-space:nowrap;z-index:10;"
+            pointer-events:none;white-space:nowrap;z-index:10"
      aria-live="off">
-    Arrow keys / WASD to move
+    Arrow keys / WASD to move &nbsp;·&nbsp; F = flag mode
   </p>
 
   <script src="js/game.js"></script>

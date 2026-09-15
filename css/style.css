@@ -427,19 +427,63 @@ body {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* ── HUD (level + restart) ── */
+/* ── Flag mode badge (shown in HUD when active) ── */
+#hud-flag {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  font-size: 7px;
+  color: #ff6060;
+  background: rgba(80,8,8,0.92);
+  border: 2px solid #cc2020;
+  padding: 5px 10px;
+  animation: flagPulse 1.1s ease-in-out infinite;
+}
+@keyframes flagPulse {
+  0%,100% { border-color: #cc2020; }
+  50%      { border-color: #ff6060; }
+}
+
+/* ── Room transition overlay extras ── */
+.room-transition-box { gap: 14px; }
+.rt-eyebrow {
+  font-size: 7px;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+.rt-night {
+  font-size: 9px;
+  color: var(--accent);
+}
+
+/* ── HUD ── */
 #hud {
   position: absolute;
   top: 10px;
   left: 12px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   z-index: 30;
+  flex-wrap: wrap;
 }
 #hud-level {
   font-size: 8px;
   color: var(--accent);
+  background: rgba(8,8,15,0.85);
+  padding: 6px 10px;
+  border: 2px solid var(--border-hi);
+}
+#hud-lives {
+  font-size: 11px;
+  background: rgba(8,8,15,0.85);
+  padding: 5px 9px;
+  border: 2px solid var(--border-hi);
+  letter-spacing: 1px;
+}
+#hud-cheese {
+  font-size: 8px;
+  color: #f0c030;
   background: rgba(8,8,15,0.85);
   padding: 6px 10px;
   border: 2px solid var(--border-hi);
@@ -456,6 +500,37 @@ body {
 }
 .hud-btn:hover { color: var(--accent); border-color: var(--accent); }
 .hud-btn:focus-visible { outline: 2px solid var(--accent); }
+.hud-music-btn { font-size: 12px; padding: 4px 8px; }
+
+/* ── Life-lost flash ── */
+#life-lost-msg {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-12px);
+  font-size: 14px;
+  color: #ff6060;
+  text-shadow: 2px 2px 0 #880000;
+  background: rgba(8,8,15,0.9);
+  border: 3px solid #cc2020;
+  padding: 14px 24px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 60;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.2s;
+}
+#life-lost-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 500px) {
+  #hud { gap: 7px; }
+  #hud-level { font-size: 6px; }
+  #hud-lives { font-size: 9px; }
+  #hud-cheese { font-size: 6px; }
+}
 
 /* ── D-Pad ── */
 .dpad {
@@ -492,7 +567,8 @@ body {
 #dpad-left  { grid-area: left; }
 #dpad-down  { grid-area: down; }
 #dpad-right { grid-area: right; }
-#dpad-mid   { grid-area: mid; background: rgba(12,8,22,0.5); border: none; pointer-events: none; }
+#dpad-flag  { grid-area: mid; font-size: 18px; background: rgba(50,10,10,0.75); border-color: rgba(140,50,50,0.65); }
+#dpad-flag.active { background: rgba(100,10,10,0.9); border-color: #cc2020; }
 
 /* ── Game Overlays ── */
 .game-overlay {
