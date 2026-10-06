@@ -15,6 +15,13 @@ export default defineConfig(({ mode }) => {
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
+      rollupOptions: {
+        input: {
+          index:     path.resolve(__dirname, 'index.html'),
+          game:      path.resolve(__dirname, 'game.html'),
+          howToPlay: path.resolve(__dirname, 'how-to-play.html'),
+        },
+      },
     },
     plugins: [
       react(),

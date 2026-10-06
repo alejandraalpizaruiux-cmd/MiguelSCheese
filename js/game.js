@@ -1286,3 +1286,10 @@ function sd(n)      { return Math.abs(Math.sin(n*127.1+43.7)*43758.5453)%1; }
 // ════════════════════════════════════════════════════════
 
 window.addEventListener('load', init);
+
+// ES modules don't expose variables globally; re-attach the functions
+// that HTML onclick attributes call so they remain reachable.
+Object.assign(window, {
+  continueGame, quitGame, nextNight, restartLevel,
+  toggleMusic, confirmRoomTransition,
+});
